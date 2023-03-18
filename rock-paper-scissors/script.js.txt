@@ -1,0 +1,74 @@
+function rpsGame(yourChoice)
+{
+	var humanChoice, botChoice;
+	humanChoice = yourChoice.id;
+	botChoice    = numToChoice(randTorpsInt());
+	results = decideWinner(humanChoice, botChoice) //[0, 1] human lost, bot won!
+	message  = finalMessage(results) //{'meassage' : 'You Won!', 'color' : 'green'}
+	rpsFrontEnd(yourChoice.id, botChoice, message);
+}//rpsGame
+
+function randTorpsInt()
+{
+	return Math.floor(Math.random() * 3)
+}//randTorpsInt
+
+function numToChoice(number)
+{
+	return ['rock', 'paper', 'scissors'][number];
+}//numToChoice
+
+function decideWinner(yourChoice, computerChoice)
+{
+	var rpsDataBase = {
+		'rock' : {'rock' : '0.5', 'scissors' : '1', 'paper' : '0'},
+		'paper' : {'paper' : '0.5', 'rock' : '1', 'scissors' : '0'},
+		'scissors' : {'scissors' : '0.5', 'paper' : '1', 'rock' : '0'},
+	};
+
+	var yourScore  =  rpsDataBase[yourChoice][computerChoice];
+	var computerScore  =  rpsDataBase[computerChoice][yourChoice];
+
+	return [yourScore, computerScore];
+}//decideWinner
+
+function finalMessage([yourScore, computerScore])
+{
+	if(yourScore == 0)
+	{
+		return { 'message' : 'You lost', 'color' : 'red'}; 
+	}
+	else if(yourScore == 0.5)
+	{
+		return { 'message' : 'You tied', 'color' : 'orange'}; 
+	}
+	else{
+		return { 'message' : 'You Won!', 'color' : 'green'};
+	}
+}//finalMessage
+
+function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage)
+{
+	var ImagesDataBase = {
+		'rock' : document.getElementById('rock').src,
+		'paper' : document.getElementById('paper').src,
+		'scissors' : document.getElementById('scissors').src,
+	}
+
+	//let's remove all the images
+	document.getElementById('rock').remove();
+	document.getElementById('paper').remove();
+	document.getElementById('scissors').remove();
+
+	var humanDiv = document.createElement('div');
+	var botDiv = document.createElement('div');
+	var messageDiv = document.createElement('div');
+
+	humanDiv.innerHTML = "<img src = '" + ImagesDataBase[humanImageChoice]  + "' height=150 width=150 style='box-shadow: 0px 10px 50px rgba(37, 50, 233, 1)'>";
+	messageDiv.innerHTML = "<h1 style='color:" + finalMessage['color'] + "; font-weight:60px;padding:30px;'>"+ finalMessage['message'] +"</h1>";
+	botDiv.innerHTML  = "<img src ='" + ImagesDataBase[botImageChoice]  + "' height=150 width=150 style='box-shadow: 0px 10px 50px rgba(243, 38, 24, 1)'>";
+	
+	document.getElementById('flex-box-rps-div').appendChild(humanDiv);
+	document.getElementById('flex-box-rps-div').appendChild(messageDiv);
+	document.getElementById('flex-box-rps-div').appendChild(botDiv);
+}//rpsFrontEnd
