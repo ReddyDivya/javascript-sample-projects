@@ -1,0 +1,34 @@
+<html>
+    <script>
+         console.log("Example 1");
+        var person = {
+            firstName: "Sakshi",
+            lastName: "Jain",
+            get: function () {
+                console.log("Outer: " + this.firstName + " " + this.lastName);
+                var print = function (role) {
+                    console.log("Inner: " + this.firstName + " " + this.lastName + ". I am a " + role + ".");
+                }.bind(this, 'Devloper'); // arg1 - passing context otherwise prints undefined, arg2 - argument
+                print();
+            }
+        };
+                
+        person.get();
+
+        console.log("Example 2");
+        const module = {
+            x: 42,
+            getX: function() {
+                return this.x;
+            }
+        };
+
+        const unboundGetX = module.getX;
+        console.log(unboundGetX()); // The function gets invoked at the global scope
+        // expected output: undefined
+
+        const boundGetX = unboundGetX.bind(module);
+        console.log(boundGetX());
+        // expected output: 42
+    </script>
+</html>

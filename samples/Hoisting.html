@@ -1,0 +1,34 @@
+<html>
+    <a href="https://www.facebook.com/profile.php?id=100012544691535">facebook</a>
+    <h5>
+        Hoisting is the default behavior of moving all the declarations at the top of the scope before code 
+        execution. Basically, it gives us an advantage that no matter where functions and variables are 
+        declared, they are moved to the top of their scope regardless of whether their scope is global or 
+        local.
+        It allows us to call functions before even writing them in our code.
+        Note: JavaScript only hoists declarations, not the initialisations.
+    </h5>
+    <p>Example 1
+        <p id="demo"></p>
+    </p>
+    <p>Example 2
+        <p id="demo2"></p>
+    </p>
+
+    <script>
+        console.log("Example 1");
+        x = 5; // Assign 5 to x
+
+        elem = document.getElementById("demo"); // Find an element 
+        elem.innerHTML = x;           // Display x in the element
+
+        var x; // Declare x
+
+        console.log("Example 2"); 
+        // Returns undefined, as only declaration was hoisted, no initialization has happened at this stage
+        document.getElementById("demo2").innerHTML = num;
+
+        var num; // Declaration
+        num = 6; // Initialization
+    </script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Async & Await</title>
+    </head>
+    <body>
+        <div>
+            <h1>Async</h1>
+            <span id="FPromise"></span>
+            <hr>
+        </div>
+        <div>
+            <h1>Async & Await</h1>
+            <button onclick="mydisplay()">Async & Await</button>
+            <span id="Promise"></span>
+            <hr>
+        </div>
+    </body>
+    <script>
+        //using Async fun as a promise
+        async function myFun(){
+            return "Hello";
+        }
+
+        //myFun() became promise because of async keyword before function keyword & this doesn't requite await in it
+        myFun().then( 
+            function(value) {display(value)},
+            function(error) {display(error)}
+        );
+
+        function display(val){
+            document.getElementById("FPromise").innerHTML = val;
+        }
+
+        //Async & Await
+        async function mydisplay(){
+            let myPromise = new Promise(function(myResolve, myReject){
+            let x = 0;
+            if(x == 0)
+                myResolve("Success");
+            else
+                myReject("Error");       
+            });
+            
+            document.getElementById("Promise").innerHTML = await myPromise;
+        }
+    </script>
+</html>    

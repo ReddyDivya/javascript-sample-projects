@@ -1,0 +1,56 @@
+<html>
+    <h5>
+        With call(), an object can use a method belonging to another object.
+    </h5>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <script>
+        console.log("Example 1");
+        var person = {
+            firstName: "Sakshi",
+            lastName: "Jain",
+            get: function () {
+                console.log("Outer: " + this.firstName + " " + this.lastName);
+                var print = function (role) {
+                    console.log("Inner: " + this.firstName + " " + this.lastName + ". I am a " + role + ".");
+                }.call(this, 'Devloper'); // arg1 - passing context otherwise prints undefined, arg2 - argument
+                //print(); //in call(), explicitly no need to call the print() to print
+            }
+        };
+        person.get();
+
+        console.log("Example 2");
+        var person = {
+            fullName: function() {
+                return this.firstName + " " + this.lastName;
+            }
+        }
+        var person2 = {
+            firstName:"Mary",
+            lastName: "Doe"
+        }
+        
+        var x = person.fullName.call({ firstName:"John", lastName: "Doe"  }); 
+        document.getElementById("demo").innerHTML = x; 
+        var y = person.fullName.call(person2); 
+        document.getElementById("demo1").innerHTML = y; 
+
+        console.log("Example 3");
+        var info = {
+            userName: function(city, country) {
+                return this.fName + " " + this.lName + "," + city + "," + country;
+            }
+        }
+        var u1 ={
+            fName:"Mahathalli",
+            lName: "Doe"
+        }
+        var u2 = {
+            fName:"Jasmine",
+            lName: "shetty"
+        }
+        var x = info.userName.call(u1, "Oslo", "Norway"); 
+        document.getElementById("demo2").innerHTML = x;
+    </script>
+</html>

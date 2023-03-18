@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Call Back Function</title>
+    </head>
+    <body>
+        <div>
+            <h1>Call Back Function with proper function name</h1>
+            <button onclick="display('Hi Divya...', myCall)">Call Back Function</button>
+            <span id="callback"></span>
+            <hr>
+        </div>
+        <div>
+            <h1>Call Back Function with anonymous function</h1>
+            <button onclick="createQuote('people', function(quote){document.getElementById('anonymous').innerHTML = quote})">Anonymous Call Back Function</button>
+            <span id="anonymous"></span>
+            <hr>
+        </div>
+        <div>
+            <h1>Call Back Function with setTimeOut</h1>
+            <button onclick="serverRequest('Response from the server: The glass is half', function(resp){document.getElementById('setTimeOut').innerHTML = resp})">setTimeOut</button>
+            <span id="setTimeOut"></span>
+            <hr>
+        </div>        
+    </body>
+    <script>
+        //Call Back Function with proper function name
+        function display(message, Call) {
+            var msg = `This is a new ${message}`;
+            Call(msg);
+        }
+        function myCall(vMsg){
+            document.getElementById("callback").innerHTML = `Callback function with proper name ${vMsg}`;
+        }
+
+        //Call Back Function with anonymous function
+        function createQuote(quote, call) {
+            var vQutote = `You are good ${quote}`;
+            call(vQutote);
+        }
+
+        //Call Back Function with setTimeOut
+        function serverRequest(query, callBck){
+            setTimeout(function(){
+                var response = query + " full!";
+                callBck(response);
+            }, 5000);
+        }
+    </script> 
+</html>

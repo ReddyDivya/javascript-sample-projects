@@ -1,0 +1,32 @@
+<html>
+    <script>
+        var laptop = {
+        company: "Apple",
+        model: "Macbook Air",
+        os: "macOS",
+        set: function (company, model, os) {
+            var setCompany = function (company) {
+                this.company = company;
+            }.bind(this, company);
+
+            var setModel = function (model) {
+                this.model = model;
+            }.bind(this);
+
+            var setOS = function (os) {
+                this.os = os;
+            }
+
+            setCompany();//for bind(), need to call the function compulsory
+            setModel();//for bind(), need to call the function compulsory
+            setOS();//for bind(), need to call the function compulsory
+        },
+        get: function() {
+            console.log(this.company, this.model, this.os);
+        }
+        };
+
+        laptop.set("Dell", "Inspiron", "Windows");
+        laptop.get();
+    </script>
+</html>

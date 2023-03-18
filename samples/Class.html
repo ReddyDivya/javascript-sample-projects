@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Class</title>
+    </head>
+    <body>
+        <div>
+            <h1>Class</h1>
+            <span id="Class"></span>
+            <hr>
+        </div>
+        <div>
+            <h1>Class with get and set</h1>
+            <span id="ClassGS"></span>
+            <hr>
+        </div>
+        <div>
+            <h1>Class with Inheritance</h1>
+            <span id="ClassInheritance"></span>
+            <hr>
+        </div>
+        <div>
+            <h1>Class with static method</h1>
+            <span id="ClassStatic"></span>
+            <hr>
+        </div>
+    </body>
+    <script>
+        //Class 
+        class Mobile{
+            constructor(brand){
+                this.phoneBrand = brand;
+            }
+
+            displayBrand(vNewBrand){
+                return this.phoneBrand + "\t" + vNewBrand; 
+            }
+        }
+
+        let vMobile = new Mobile("Samsung");
+        document.getElementById("Class").innerHTML = vMobile.displayBrand("Redmi");
+
+        //Class with get and set
+        class Social{
+            constructor(platform){
+                this.platform = platform;
+            }
+
+            get _platform(){
+                return this.platform;
+            }
+
+            set _platform(x){
+                this.platform = x;
+            }
+
+            displaySocial(vNewPlatform){
+                document.getElementById("ClassGS").innerHTML = this.platform;
+                document.getElementById("ClassGS").innerHTML += "\t"+ vNewPlatform;
+            }
+        }
+
+        let vSocial = new Social("Twitter");
+        document.getElementById("ClassGS").innerHTML = vSocial._platform;//using set and get function _platform
+        
+        //Class with Inheritance
+        class MobileCount extends Mobile{
+            constructor(brand, count){//child class's constructor
+                super(brand);//calls parent class's constructor
+                this.MobileCount = count;
+            }
+
+            show(){
+                return this.displayBrand("Apple") + this.MobileCount;
+            }
+        }
+
+        let vMobileCount = new MobileCount("OnePlus","7");
+        document.getElementById("ClassInheritance").innerHTML = vMobileCount.show();
+
+        //Class with static method
+        class HRU{
+            constructor(name){
+                this.name = name;
+            }
+
+            static sayHello(x){
+                return `Hello ${x.name}`;
+            }
+        }
+
+        let vHRU = new HRU("Divya");
+        document.getElementById("ClassStatic").innerHTML = HRU.sayHello(vHRU);//passing class object as an argument to a static method with class name
+    </script>
+</html>    

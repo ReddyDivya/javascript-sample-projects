@@ -1,0 +1,112 @@
+<html>
+
+<script>
+    //Example - 1 of Closure
+    console.log("closure concept - 1"); //closure
+    function welcome(name)
+    {
+        var greeting = "Welcome "+ name;
+
+        return function()
+        {
+            console.log(greeting);
+        }
+    }
+
+    var sayHello = welcome("Alex");
+
+    console.log(sayHello); //returns function
+    console.log(sayHello()); //closure
+
+    console.log("----------------------------------------");
+     //Example - 2 of Closure
+     console.log("closure concept - 2"); //closure
+    function fest(name)
+    {
+        var msg = "Fest  "+ name;
+
+        let message =  function()
+        {
+            console.log(msg);
+        }
+
+        return message;
+    }
+
+    var say = fest("Christmas");
+
+    console.log(say); //returns function
+    console.log(say()); //closure
+
+    console.log("----------------------------------------");
+     //Example - 3 of Closure
+     console.log("closure concept - 3"); //closure
+
+     function modifyItems()
+     {
+        var items = 0;
+        
+        return{
+                add : function() 
+                {
+                        console.log("Item added to the cart !"); 
+                        items++;
+                },
+                getCount : function()
+                {
+                    return "Items in the cart = "+ items;
+                }  
+            }
+     }//modifyItems
+
+     var vItem  =  modifyItems();
+     vItem.add();
+     
+     console.log(vItem.getCount());
+
+     vItem.add();
+     vItem.add();
+     vItem.add();
+     vItem.add();
+
+     console.log(vItem.getCount());
+
+     console.log("----------------------------------------");
+     //Example - 4 of Closure
+     console.log("closure concept - 4"); //closure
+
+     function createEmployeeID() { 
+        var prefix = "employee"; 
+        var generateID = function() { 
+            for (var i = 0; i < 5; i++) { 
+                console.log(prefix + i); 
+            } 
+        } 
+        return generateID; 
+    } 
+    var print = createEmployeeID(); 
+    print();
+
+    console.log("----------------------------------------");
+     //Example - 5 of Closure
+     console.log("closure concept - 5"); //closure
+     var generateID = function() {
+            var prefix  = "uid-";
+            var count   =   0;
+     
+            return function()
+            {
+                count++;
+                console.log(prefix+count);
+            }
+        }
+
+    // calling the generateID() and then storing the returned function inside the variable named create
+    var create = generateID();
+   
+    create();
+    create();
+    create();
+    create();
+</script>
+</html>

@@ -1,0 +1,41 @@
+<html>
+
+</html>
+<script>
+
+    //Example of Pass By Value - applicable for string, boolean, number data types
+    console.log("Example of Pass By Value");
+
+    var flower_name = "Rose";
+    
+    flower(flower_name);
+    function flower(vFlower)
+    {
+        console.log(vFlower);
+        vFlower =   "Jasmine";
+        console.log(vFlower);
+    }//flower
+
+    console.log(flower_name);
+
+    //Example of Pass By Reference - applicable for array, object data types
+   
+    console.log("Example of Pass By Reference");
+    
+    var person = {"name" : "Divya", "age" : "22"};
+
+    info(person);
+
+    function info(vPerson)
+    {
+        console.log(vPerson.name);
+        vPerson.name    = "Divya Reddy";
+        console.log(vPerson.name);
+
+    }//info
+
+    console.log(person.name);
+
+    
+
+</script>

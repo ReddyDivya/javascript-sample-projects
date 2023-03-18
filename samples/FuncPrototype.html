@@ -1,0 +1,19 @@
+<html>
+
+<script>
+    var s = true;
+    console.log(s.__proto__);//Boolean
+  
+    s = "ji";
+    console.log(s.__proto__);//String
+
+    var person  = {"name" : "Divya", "age" : "22"};
+    var rat     = {"area" : "hyd"};
+
+    //Proto typical inheritance - looks in rat obj first, if not found checks in parent object
+    rat.__proto__ = person;
+
+    console.log(rat.name);
+    console.log(rat.__proto__);
+</script>
+</html>

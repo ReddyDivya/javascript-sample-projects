@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Promise</title>
+    </head>
+    <body>
+        <div>
+            <h1>Promise with Success and Error Callbacks</h1>
+            <span id="Promise"></span>
+            <hr>
+        </div>
+        <div>
+            <h1>Promise with only success callback</h1>
+            <span id="SPromise"></span>
+            <hr>
+        </div>
+        <div>
+            <h1>Promise with File</h1>
+            <span id="FilePromise"></span>
+            <hr>
+        </div>      
+    </body>
+    <script>
+        //Promise with Success and Error Callbacks
+        let myPromise = new Promise(function(myResolve, myReject){
+            let x = 0;
+            if(x == 0)
+                myResolve("Success");
+            else
+                myReject("Error");       
+        });
+
+        myPromise.then(
+                        function(value) {display(value)},
+                        function(error) {display(error)}
+                      );
+    
+        function display(vMsg){
+            document.getElementById("Promise").innerHTML = vMsg;
+        }
+
+        //Promise with only success callback
+        let myProm = new Promise(function(myResolve){
+            
+            setTimeout(function(){
+                myResolve("I love my family");
+            }, 3000)
+        });
+
+        myProm.then(
+                        function(value) { document.getElementById("SPromise").innerHTML = value; }
+                   )
+
+        //Promise with File
+        let myPrm = new Promise(function(myResolve, myReject){
+            let req = new XMLHttpRequest();
+            req.open('GET', 'Callback.html');
+            req.onload = function(){
+                if(req.status == 200)
+                    myResolve(req.response);
+                else
+                    myReject(req.error);  
+            }
+            req.send();
+        });
+
+        myPrm.then(
+                        function(value){ document.getElementById("FilePromise").innerHTML = value;},
+                        function(error){ document.getElementById("FilePromise").innerHTML = error;}
+                  );
+    </script>
+</html>    
